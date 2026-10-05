@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eff4f1" />
+    <meta name="description" content="A calm, simple task board." />
+    <title>Daymark | Task board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" type="module"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="wordmark" href="/" aria-label="Daymark home">
+          <span class="brand-mark" aria-hidden="true">d</span>
+          <span>daymark</span>
+        </a>
+        <div class="connection" id="connection" role="status">
+          <span class="connection-dot" aria-hidden="true"></span>
+          <span id="connection-label">Connecting</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow"><span class="eyebrow-line"></span> YOUR SPACE, YOUR PACE</p>
+          <h1 id="page-title">Small steps,<br /><span>in motion.</span></h1>
+          <p class="intro-copy">A little clarity for everything on your mind.</p>
+        </section>
+
+        <section class="board" aria-label="Task board">
+          <form class="task-form" id="task-form">
+            <label class="visually-hidden" for="task-title">Add a task</label>
+            <span class="plus-mark" aria-hidden="true">+</span>
+            <input id="task-title" name="title" maxlength="160" placeholder="What needs doing?" autocomplete="off" required />
+            <button class="add-button" type="submit">Add task <span aria-hidden="true">↗</span></button>
+          </form>
+
+          <div class="board-heading">
+            <div>
+              <h2>Your tasks</h2>
+              <p id="task-count">A fresh page.</p>
+            </div>
+            <div class="filters" role="group" aria-label="Filter tasks">
+              <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-button" type="button" data-filter="open" aria-pressed="false">Open</button>
+              <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+            </div>
+          </div>
+
+          <p class="notice" id="notice" role="alert" hidden></p>
+          <ul class="task-list" id="task-list" aria-live="polite" aria-busy="true"></ul>
+          <div class="empty-state" id="empty-state" hidden>
+            <span class="empty-spark" aria-hidden="true">✳</span>
+            <p id="empty-title">Nothing on the list yet.</p>
+            <span id="empty-copy">Add a task above and make a start.</span>
+          </div>
+          <footer class="board-footer">
+            <span><span class="footer-mark" aria-hidden="true">✳</span> One thing at a time.</span>
+            <span id="progress-label">0 of 0 complete</span>
+          </footer>
+        </section>
+      </main>
+
+      <footer class="page-footer">MAKE ROOM FOR WHAT MATTERS <span>·</span> DAYMARK</footer>
+    </div>
+  </body>
+</html>
