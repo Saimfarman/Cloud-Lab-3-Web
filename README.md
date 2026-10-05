@@ -17,4 +17,4 @@ Push this repository to GitHub, then create a site in Netlify by importing that 
 
 The `tasks` table is created automatically the first time the API is called. The API is available at `/api/tasks` and supports `GET`, `POST`, `PATCH`, and `DELETE`.
 
-If the API reports that it is not configured, make sure the Netlify site has a database initialized with `npx netlify database init`, then redeploy. This provides the `NETLIFY_DATABASE_URL` environment variable required by the function. Do not put the database connection string in source control.
+Netlify Database provides the `NETLIFY_DB_URL` connection string to functions automatically; you do not need to copy it into your code. If `npx netlify database init` says migrations are already set up, run `npx netlify database status` to check the database setup. The app's database clients use `NETLIFY_DB_URL`. Never commit the connection string to source control.

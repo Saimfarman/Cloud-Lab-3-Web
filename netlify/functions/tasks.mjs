@@ -18,9 +18,9 @@ async function ensureTable(sql) {
 
 export default async (request) => {
   try {
-    const connectionString = process.env.NETLIFY_DATABASE_URL;
+    const connectionString = process.env.NETLIFY_DB_URL;
     if (!connectionString) {
-      console.error('Task API configuration error: NETLIFY_DATABASE_URL is not set.');
+      console.error('Task API configuration error: NETLIFY_DB_URL is not set.');
       return json({
         error: 'The task service is not configured. Initialize Netlify DB for this site and redeploy.',
       }, 503);
