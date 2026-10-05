@@ -3,12 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "netlify dev"
+    "dev": "netlify dev",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "netlify dev:exec drizzle-kit migrate",
+    "db:studio": "netlify dev:exec drizzle-kit studio"
   },
   "dependencies": {
-    "@netlify/neon": "^0.1.0"
+    "@netlify/database": "^2.0.1",
+    "@netlify/neon": "^0.1.0",
+    "drizzle-orm": "^0.45.3"
   },
   "devDependencies": {
-    "netlify-cli": "^23.0.0"
+    "drizzle-kit": "^0.31.11",
+    "netlify-cli": "^27.10.2"
   }
 }
