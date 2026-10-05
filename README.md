@@ -16,3 +16,5 @@ The app will be available at `http://localhost:8888`. Netlify Dev supplies the f
 Push this repository to GitHub, then create a site in Netlify by importing that repository. The included `netlify.toml` publishes `public/` and deploys `netlify/functions/`; no frontend build command is needed. In the Netlify CLI, link the site and run `npx netlify database init` to set up its database. Redeploy after database setup so the function receives its connection settings.
 
 The `tasks` table is created automatically the first time the API is called. The API is available at `/api/tasks` and supports `GET`, `POST`, `PATCH`, and `DELETE`.
+
+If the API reports that it is not configured, make sure the Netlify site has a database initialized with `npx netlify database init`, then redeploy. This provides the `NETLIFY_DATABASE_URL` environment variable required by the function. Do not put the database connection string in source control.

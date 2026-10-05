@@ -1,7 +1,5 @@
 import { neon } from '@netlify/neon';
 
-const sql = neon();
-
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -9,7 +7,7 @@ function json(data, status = 200) {
   });
 }
 
-async function ensureTable() {
+async function ensureTable(sql) {
   await sql`CREATE TABLE IF NOT EXISTS tasks (
     id BIGSERIAL PRIMARY KEY,
     title TEXT NOT NULL,
@@ -20,7 +18,16 @@ async function ensureTable() {
 
 export default async (request) => {
   try {
-    await ensureTable();
+    const connectionString = process.env.NETLIFY_DATABASE_URL;
+    if (!connectionString) {
+      console.error('Task API configuration error: NETLIFY_DATABASE_URL is not set.');
+      return json({
+        error: 'The task service is not configured. Initialize Netlify DB for this site and redeploy.',
+      }, 503);
+    }
+
+    const sql = neon(connectionString);
+    await ensureTable(sql);
 
     if (request.method === 'GET') {
       const tasks = await sql`
